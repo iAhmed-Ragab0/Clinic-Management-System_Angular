@@ -1,0 +1,177 @@
+<section class="h-100" style="background-color: #5d6a72;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col formContainer">
+        <div class="card card-registration">
+          <div class="row g-0">
+            <!-- <div class="col-xl-6 d-none d-xl-block">
+              <img src="assets/images/reg.jpg" alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; max-height: 40rem;" />
+            </div> -->
+            <div class="col-xl-12" style="height: 40rem; overflow: auto;">
+              <div class="card-body p-md-5 text-black" [formGroup]="userRegisterForm">
+                <h3 class="mb-5" style="position: relative;">Register To Join <span
+                    style="color: #00b7ed;">Origami</span>'s Family<img src="assets/clinicLogo.png" style="width: 7rem;
+                    position: absolute;
+                    right: 0;
+                    top: calc(50% - 3.5rem);" alt=""></h3>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example8">SSN</label>
+                  <input type="text" formControlName="SSN" id="form3Example8" class="form-control form-control-lg"
+                    [class.is-valid]="SSN?.valid" />
+                    
+                  <div *ngIf="SSN?.invalid && SSN?.touched" style="color: red;">
+                    <span *ngIf="SSN?.errors?.['required']">SSN is required</span>
+                    <span *ngIf="SSN?.errors?.['onlyDigits']">SSN
+                      must consist of only numbers</span>
+                    <span
+                      *ngIf="(SSN?.errors?.['minlength'] || SSN?.errors?.['maxlength'])&&!(SSN?.errors?.['onlyDigits'])">SSN
+                      must be of 14
+                      digits</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1m">First name</label>
+                      <input type="text" formControlName="firstName" id="form3Example1m"
+                        class="form-control form-control-lg" [class.is-valid]="firstName?.valid" />
+                    </div>
+                    <div *ngIf="firstName?.invalid && firstName?.touched" style="color: red;">
+                      <span *ngIf="firstName?.errors?.['required']">First Name is required</span>
+                      <span *ngIf="firstName?.errors?.['pattern']">only alphabetic of minimum 3 letters,
+                        <b>{{firstName?.errors?.['pattern'].actualValue}}</b> doesn't match</span>
+                      <span *ngIf="firstName?.errors?.['forbiddenName']">forbidden name</span>
+                      <span *ngIf="firstName?.errors?.['onlyCharacters']">name must consist of only characters</span>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1n">Last name</label>
+                      <input type="text" formControlName="lastName" id="form3Example1n"
+                        class="form-control form-control-lg" [class.is-valid]="lastName?.valid" />
+                    </div>
+                    <div *ngIf="lastName?.invalid && lastName?.touched" style="color: red;">
+                      <span *ngIf="lastName?.errors?.['required']">Last Name is required</span>
+                      <span *ngIf="lastName?.errors?.['pattern']">only alphabetic of minimum 3 letters,
+                        <b>{{lastName?.errors?.['pattern'].actualValue}}</b> doesn't match</span>
+                      <span *ngIf="lastName?.errors?.['forbiddenName']">forbidden name</span>
+                      <span *ngIf="lastName?.errors?.['onlyCharacters']">name must consist of only characters</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-outline mb-4 col-md-6">
+                    <label class="form-label" for="form3Example8">Age</label>
+                    <input type="text" formControlName="age" id="form3Example8" class="form-control form-control-lg"
+                      [class.is-valid]="age?.valid" />
+                    <div *ngIf="age?.errors && age?.touched" style="color: red;">
+                      <span *ngIf="phone?.errors?.['required']">Age is required</span>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-4 col-md-6">
+                    <label class="form-label" for="form3Example8">Mobile Number</label>
+                    <input type="text" formControlName="phone" id="form3Example8" class="form-control form-control-lg"
+                      [class.is-valid]="phone?.valid" />
+                    <div *ngIf="phone?.errors && phone?.touched" style="color: red;">
+                      <span *ngIf="phone?.errors?.['required']">Phone number is required</span>
+                      <span *ngIf="phone?.errors?.['pattern']">Try a valid phone number</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example8">E-mail</label>
+                  <input type="text" formControlName="email" id="form3Example8" class="form-control form-control-lg"
+                    [class.is-valid]="email?.valid" />
+                  <div *ngIf="email?.invalid && email?.touched" style="color: red;">
+                    <span *ngIf="email?.errors?.['required']">email is required</span>
+                    <span *ngIf="email?.errors?.['pattern']">Try a valid email,
+                      <b>{{email?.errors?.['pattern'].actualValue}}</b>
+                      doesn't match</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1m1">Password</label>
+                      <input type="password" formControlName="password" id="form3Example1m1"
+                        class="form-control form-control-lg" [class.is-valid]="password?.valid" />
+                    </div>
+                    <div *ngIf="password?.invalid && password?.touched" style="color: red;">
+                      <span *ngIf="password?.errors?.['required']">Password is required</span>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label" for="form3Example1n1">Confirm Password</label>
+                      <input type="password" id="form3Example1n1" class="form-control form-control-lg"
+                        formControlName="confirmPassword"
+                        [class.is-valid]="password?.value==confirmPassword?.value&& password?.value.length>0">
+                    </div>
+                    <div *ngIf="confirmPassword?.errors?.['required']&& confirmPassword?.touched" style="color: red;">
+                      Confirm Password
+                      is required</div>
+                    <div *ngIf="userRegisterForm?.errors?.['unmatchedPasswords']&& confirmPassword?.touched">
+                      Passwords are not matched</div>
+                  </div>
+
+
+                </div>
+
+                <div formGroupName="address">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example8">City</label>
+                    <input type="text" formControlName="city" id="form3Example8" class="form-control form-control-lg"
+                      [class.is-valid]="city?.valid" />
+                    <div *ngIf="city?.invalid && city?.touched" style="color: red;">
+                      <span *ngIf="city?.errors?.['required']">City is required</span>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="street">Street</label>
+                        <input type="text" formControlName="street" id="street" class="form-control form-control-lg"
+                          [class.is-valid]="street?.valid" />
+                      </div>
+                      <div *ngIf="street?.invalid && street?.touched" style="color: red;">
+                        <span *ngIf="street?.errors?.['required']">street is required</span>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="building">Building</label>
+                        <input type="text" formControlName="building" id="building" class="form-control form-control-lg"
+                          [class.is-valid]="building?.valid" />
+                      </div>
+                      <div *ngIf="building?.invalid && building?.touched" style="color: red;">
+                        <span *ngIf="building?.errors?.['required']">building is required</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end pt-3">
+                  <button type="button" (click)="loginPage()" class="btn btn-light btn-lg">Login</button>
+                  <button type="button" class="btn btn-warning btn-lg ms-2 register"
+                    [disabled]="userRegisterForm.invalid" (click)="register()">Submit form</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

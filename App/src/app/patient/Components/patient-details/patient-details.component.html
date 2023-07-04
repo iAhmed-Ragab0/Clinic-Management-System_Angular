@@ -1,0 +1,56 @@
+<app-header2></app-header2>
+<div class="container-fluid mt--7">
+  <div class="row justify-content-center">
+    <div class="col-xl-9 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+              <a [routerLink]="['/patient', patients._id, 'update']">
+                <img
+                  src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                  class="rounded-circle"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <button (click)="goBack()" class="btn btn-default col-2">
+              Back
+            </button>
+            <button
+              [routerLink]="['/patient', patients._id, 'update']"
+              class="btn btn-success col-2 float-right"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
+        <div class="card-body pt-0 pt-md-4 text-center mt-5">
+          <div class="row justify-content-around d-flex">
+            <div class="col text-muted">
+              <h3>User SSN</h3>
+              <h3>Name</h3>
+              <h3>Age</h3>
+              <h3>Address</h3>
+              <h3>Phone Number</h3>
+            </div>
+            <div class="col">
+              <h3>{{ patients.SSN }}</h3>
+              <h3>{{ patients.firstName }} {{ patients.lastName }}</h3>
+              <h3>{{ patients.age }}</h3>
+              <h3>
+                {{ patients.address.city }}-{{ patients.address.street }}-{{
+                  patients.address.building
+                }}
+              </h3>
+              <h3>{{ patients.phone }}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

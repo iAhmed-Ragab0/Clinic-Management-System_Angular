@@ -1,0 +1,39 @@
+section{
+    max-height: 100vh;
+}
+
+.formContainer{
+    max-height: 100%;
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.register{
+    background-color: #00b7ed;
+    color: white;
+    outline: none;
+    border: none;
+}
+.register:disabled{
+    background-color: lightgray;
+    color:white;
+}
+.register:hover{
+    background-color: #4b8631;
+    color:white;
+}
+
+.form-control:focus {
+    border-color: #00b7ed;
+    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+  }
+

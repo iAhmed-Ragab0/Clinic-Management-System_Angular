@@ -1,0 +1,135 @@
+<app-header2></app-header2>
+<div class="container-fluid mt--7">
+  <div class="row justify-content-center">
+    <div class="col-xl-9 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="card-body">
+          <h3 class="heading-small mb-5">Choose An Apponitment</h3>
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group focused">
+                  <label class="form-control-label">Clinic Location</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Select Clinic</option>
+                    <option
+                      *ngFor="let item of apponitment"
+                      [ngValue]="item.clinic._id"
+                    >
+                      {{ item.clinic.location.city }} -
+                      {{ item.clinic.location.street }} -
+                      {{ item.clinic.location.building }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group focused">
+                  <label class="form-control-label">Doctor</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Select Doctor</option>
+                    <option
+                      *ngFor="let item of apponitment"
+                      [ngValue]="item.doctor._id"
+                    >
+                      {{ item.doctor.firstName }} {{ item.doctor.lastName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group focused">
+                  <label class="form-control-label">Specialty</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Select Specialty</option>
+                    <option
+                      *ngFor="let item of apponitment"
+                      [ngValue]="item.doctor._id"
+                    >
+                      {{ item.doctor.specialty.specialty }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group focused">
+                  <label class="form-control-label">Date</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Select Date</option>
+                    <option
+                      *ngFor="let item of apponitment"
+                      [ngValue]="item._id"
+                    >
+                      {{ item.date }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group focused">
+                  <label class="form-control-label">From</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Select Time</option>
+                    <option
+                      *ngFor="let item of apponitment"
+                      [ngValue]="item._id"
+                    >
+                      {{ item.timeFrom }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group focused">
+                  <label class="form-control-label">to</label>
+                  <select
+                    class="form-select"
+                    #t
+                    aria-label="Default select example"
+                  >
+                    <option selected>Select Time</option>
+                    <option
+                      *ngFor="let item of apponitment"
+                      [ngValue]="item._id"
+                    >
+                      {{ item.timeTo }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="my-3" />
+
+          <div class="d-flex justify-content-around">
+            <button (click)="goBack()" class="btn btn-default col-3">
+              Back
+            </button>
+            <button
+              *ngFor="let item of apponitment"
+              (click)="book(item._id)"
+              class="btn btn-success col-3 float-right"
+            >
+              Book
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

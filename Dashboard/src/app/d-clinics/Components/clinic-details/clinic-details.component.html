@@ -1,0 +1,27 @@
+<div class="p-2">
+  <p>Address</p>
+  <ul class="d-flex gap-3 list-unstyled">
+    <li>{{data.location.city}}</li>
+    <li>{{data.location.street}}</li>
+    <li>{{data.location.building}}</li>
+  </ul>
+  <hr>
+  <p>Mobile Phone</p>
+  <span>{{data.mobilePhone}}</span>
+  <hr>
+  <p>Doctors</p>
+  <table>
+    <thead>
+      <th>First Name</th>
+      <th>First Last</th>
+      <th>Specailty</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let docotor of data.doctors">
+        <td>{{docotor.firstName}}</td>
+        <td>{{docotor.lastName}}</td>
+        <td>{{docotor.specialty.specialty | titlecase}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

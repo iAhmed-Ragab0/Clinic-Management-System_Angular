@@ -1,0 +1,223 @@
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+<body>
+  <div class="main-content">
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+      <div class="card card-profile shadow">
+        <div class="row justify-content-center">
+          <div class="col-lg-3 order-lg-2">
+            <div class="card-profile-image">
+              <a href="#">
+                <!-- src="http://localhost:8080/{{doctor?.image}}" -->
+                <img  src="http://localhost:8080/{{doctor?.image}}" class="rounded-circle">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="d-flex justify-content-between">
+            <a  class="btn btn-sm btn-info mr-4 text-white ps-5 pe-5" (click)="switch()" >Edit</a>
+            <a  class="btn btn-sm btn-default text-white ps-3 pe-3" (click)="switchFlag2()">Appointments</a>
+          </div>
+        </div>
+        <div class="card-body pt-0 pt-md-4">
+          <div class="row">
+            <div class="col">
+              <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                <div>
+                  <span class="description">Age</span>
+                  <h3>{{doctor?.age}}</h3>
+                </div>
+                <div>
+                  <span class="description">Speciality</span>
+                  <h3>{{doctor?.specialty.specialty}}</h3>
+                </div>
+                <div>
+                  <span class="description">Clinic</span>
+                  <h3>{{doctor?.clinic[0].location.city}}-{{doctor?.clinic[0].location.street}}-{{doctor?.clinic[0].location.building}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="h5 font-weight-400">
+              <i class="ni location_pin mr-2"></i> {{doctor?.firstName}} {{doctor?.lastName}}
+            </div>
+            <h3>
+              <span class="description">Phone : {{doctor?.phone}}</span>
+            </h3>
+            <h3>
+              <span class="description">SSN : </span>{{doctor?.SSN}}
+            </h3>
+            <div class="h5 mt-4">
+              <i class="ni business_briefcase-24 mr-2"></i>{{doctor?.address.city}} {{doctor?.address.street}} {{doctor?.address.building}}
+            </div>
+            <hr class="my-4">
+            <!-- <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+            <a href="#">Show more</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===================== -->
+      <div *ngIf="flag==false" class="col-xl-8 order-xl-1">
+        <div class="card bg-white shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-8">
+                <h3 class="mb-0">My account</h3>
+              </div>
+              <!-- <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              </div> -->
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="doctorUpdateForm" (ngSubmit)="onSubmit()">
+              <h6 class="heading-small  mb-4">User information</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-email">Email address</label>
+                      <input type="email" id="input-email" class="form-control form-control-alternative" formControlName="email" >
+                      <div *ngIf="email?.invalid && email?.touched">
+                        <small *ngIf="email?.errors?.['required']" class="text-danger">Email is required</small>
+                      </div>
+                    </div>
+                  
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-first-name">First name</label>
+                      <!-- [class.is-invalid]="doctorUpdateForm.get('firstName').invalid && doctorUpdateForm.get('firstName').touched"  -->
+                      <input type="text" id="input-first-name" class="form-control form-control-alternative" formControlName="firstName">
+
+                      <div *ngIf="firstName?.invalid && firstName?.touched">
+                        <small *ngIf="firstName?.errors?.['required']" class="text-danger">First Name is required</small>
+                        <small *ngIf="firstName?.errors?.['minlength']" class="text-danger">First Name must be at least 3 charachters</small>
+                      </div> 
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-last-name">Last name</label>
+                      <input type="text" id="input-last-name" class="form-control form-control-alternative" formControlName="lastName">
+                      <div *ngIf="lastName?.invalid && lastName?.touched">
+                        <small *ngIf="lastName?.errors?.['required']" class="text-danger">Last Name is required</small>
+                        <small *ngIf="lastName?.errors?.['minlength']" class="text-danger">Last Name must be at least 3 charachters</small>
+                      </div>
+                    </div>
+                   
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-last-name">Phone</label>
+                      <input type="text" id="input-last-name" class="form-control form-control-alternative" formControlName="phone">
+                      <div *ngIf="phone?.invalid && phone?.touched">
+                        <small *ngIf="phone?.errors?.['required']" class="text-danger">Phone id required</small>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4">
+              <!-- Address -->
+              <h6 class="heading-small text-muted mb-4">Address</h6>
+              <div class="pl-lg-4" formGroupName="address">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-city">City</label>
+                      <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" formControlName="city" >
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group focused">
+                      <label class="form-control-label" for="input-country">street</label>
+                      <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="street" formControlName="street" >
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-country">building</label>
+                      <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="building" formControlName="building">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-4">
+              <!-- Description -->
+              <!-- <h6 class="heading-small text-muted mb-4">About me</h6> -->
+              <button type="submit" [disabled]="!doctorUpdateForm.valid" class="btn btn-lg btn-success float-right">Confirm</button>
+              <button type="submit"  class="btn btn-lg btn-danger float-left text-white" (click)="switch()">Cancel</button>
+
+            </form>
+            <!-- {{doctorUpdateForm.value | json}} -->
+          </div>
+        </div>
+      </div>
+      <div *ngIf="flag2==false" class="col-xl-8 order-xl-1">
+        <div class="card bg-white shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              
+           
+              <!-- <div class="col-4 text-right">
+                <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              </div> -->
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table doctor-table table-hover">
+              <thead>
+                <tr>
+                  <th>Clinic Location</th>
+                  <th>Patient</th>
+                  <th>Date</th>
+                  <th> From</th>
+                  <th> To</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of appointments |paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index" >
+                  <td> {{item.clinic.location.city}} - {{item?.clinic.location.street}} - {{item?.clinic.location.building}}</td>
+                  <td>{{item.patient.firstName}} {{item.patient.lastName}}</td>
+                  <td>{{item.date}}</td>
+                  <td>{{item.timeFrom}}</td>
+                  <td>{{item.timeTo}}</td>
+                  <!-- <td [ngClass]="getAppointmentStatusClass(appointment.date)">{{ appointment.date }}</td> -->
+                </tr>
+              </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+              <pagination-controls
+                previousLabel="Prev"
+                nextLabel="Next"
+                (pageChange)="onTableDataChange($event)"
+              >
+              </pagination-controls>
+            </div>
+            <button type="submit"  class="btn btn-lg btn-danger float-left text-white" (click)="switchFlag2()">Close</button>
+           
+            <!-- {{doctorUpdateForm.value | json}} -->
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+  </div>
+</body>
+
